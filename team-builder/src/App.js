@@ -5,7 +5,7 @@ import './App.css';
 const teamList = [
   { name: 'Fido' },
   { name: 'Tweetie' },
-  { name: 'Goldie' },
+  { name: 'Goldie' }
 ]
 
 
@@ -31,22 +31,28 @@ function App() {
       email: formValues.email.trim(),
       role: formValues.role
     }
+    setTeamMembers([...teamMembers, newMember])
     setFormValues(initialMembersValues)
   }
 
   return (
     <div>
-      {teamMembers.map((member, id) => {
-        return (
-          <div key={id}>
-            {member.name}
-          </div>
-        )
-      })
+
+      <Form
+        values={formValues}
+        update={updateForm}
+        submit={submitForm}
+      />
+
+      {
+        teamMembers.map((member, id) => {
+          return (
+            <div key={id}> {member.name} </div>
+          )
+        })
       }
-      <Form values={formValues} update={updateForm} submit={submitForm}/>
     </div>
-  );
+  )
 }
 
 export default App;
